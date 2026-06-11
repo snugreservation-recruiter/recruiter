@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="Pioneerterms - Elite recruitment & talent solutions. Connecting visionary companies with exceptional professionals worldwide. Your strategic hiring partner.">
+    <title>Pioneerterms | Strategic Talent Recruitment</title>
+    <!-- Google Fonts & Font Awesome CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1e293b;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #eef2f6;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #0B2B26, #1C4E3F, #2B6E54);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .logo span {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #2c7a5e;
+            letter-spacing: 0.5px;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: #1e2f3e;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #1C6E4F;
+        }
+
+        .btn-header {
+            background: #1C4E3F;
+            color: white !important;
+            padding: 10px 24px;
+            border-radius: 40px;
+            transition: all 0.2s;
+        }
+
+        .btn-header:hover {
+            background: #0f3a2e;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(125deg, #F6FBF9 0%, #EBF3EF 100%);
+            padding: 80px 0 100px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3rem;
+            justify-content: space-between;
+        }
+
+        .hero-content {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .hero-content .badge {
+            background: #DFEEE8;
+            color: #1A5D48;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: #0C2F26;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #2c4a3e;
+            margin-bottom: 2rem;
+            max-width: 540px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: #1C6E4F;
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background: #0F4E38;
+            transform: scale(1.02);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #1C6E4F;
+            color: #1C6E4F;
+            padding: 12px 30px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-outline:hover {
+            background: #1C6E4F10;
+            border-color: #0f4e38;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 32px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #0C2F26;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: #4B6B5E;
+            max-width: 680px;
+            margin: 0 auto 50px;
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: #fefefe;
+            padding: 2rem 1.5rem;
+            border-radius: 28px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+            transition: all 0.25s;
+            text-align: center;
+            border: 1px solid #edf2f7;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.1);
+            border-color: #C8E0D4;
+        }
+
+        .service-icon {
+            font-size: 2.8rem;
+            color: #2B7A5C;
+            margin-bottom: 1.2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: #4A6759;
+        }
+
+        /* Job openings preview */
+        .jobs-preview {
+            background: #F8FCFA;
+            padding: 80px 0;
+        }
+
+        .job-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .job-item {
+            background: white;
+            padding: 1.2rem 1.8rem;
+            border-radius: 60px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            border: 1px solid #e9eef3;
+            transition: 0.2s;
+        }
+
+        .job-item:hover {
+            border-color: #BED9CF;
+            background: #ffffff;
+        }
+
+        .job-info h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+            color: #1C4E3F;
+        }
+
+        .job-info p {
+            font-size: 0.85rem;
+            color: #5C6F87;
+        }
+
+        .job-tag {
+            background: #E6F4EF;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-right: 15px;
+        }
+
+        .job-action a {
+            background: transparent;
+            border: 1px solid #1C6E4F;
+            padding: 8px 26px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            color: #1C6E4F;
+            transition: 0.2s;
+        }
+
+        .job-action a:hover {
+            background: #1C6E4F;
+            color: white;
+        }
+
+        /* About / Stats */
+        .stats {
+            padding: 70px 0;
+            background: linear-gradient(115deg, #0C2F26 0%, #174735 100%);
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
+        }
+
+        /* Contact & Form */
+        .contact {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .contact-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-top: 30px;
+        }
+
+        .contact-info {
+            flex: 1;
+            background: #F6FBF9;
+            padding: 2rem;
+            border-radius: 28px;
+        }
+
+        .contact-info i {
+            font-size: 1.6rem;
+            color: #1C6E4F;
+            margin-right: 12px;
+            width: 32px;
+        }
+
+        .contact-info p {
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-form {
+            flex: 1.5;
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 28px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eef2f8;
+        }
+
+        .form-group {
+            margin-bottom: 1.3rem;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #dce5ec;
+            border-radius: 50px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+
+        .form-group textarea {
+            border-radius: 28px;
+            resize: vertical;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #2B7A5C;
+            box-shadow: 0 0 0 3px rgba(43, 122, 92, 0.2);
+        }
+
+        .submit-btn {
+            background: #1C6E4F;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #0F4E38;
+        }
+
+        .form-message {
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        footer {
+            background: #08261F;
+            color: #CBE5DB;
+            padding: 50px 0 30px;
+            font-size: 0.9rem;
+        }
+
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #CBE5DB;
+            text-decoration: none;
+            margin: 0.4rem 0;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #1F4F3E;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1.2rem;
+            }
+            .hero-content h1 {
+                font-size: 2.3rem;
+            }
+            .container {
+                padding: 0 20px;
+            }
+            .job-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+                border-radius: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <h1>Pioneerterms</h1>
+                <span>strategic recruitment · global talent</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#jobs">Opportunities</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="btn-header">Submit CV <i class="fas fa-paper-plane"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- Hero Section with Pioneerterms identity -->
+    <section id="home" class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="badge"><i class="fas fa-chart-line"></i> Pioneerterms | Elite recruitment 2025</div>
+                <h1>Pioneering talent<br>for tomorrow's leaders</h1>
+                <p>We redefine recruitment with precision, empathy, and deep market insight. Pioneerterms connects visionary companies with game-changing professionals across tech, finance, and creative sectors.</p>
+                <div class="hero-buttons">
+                    <a href="#jobs" class="btn-primary">Explore roles</a>
+                    <a href="#contact" class="btn-outline">Hire with us <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://placehold.co/600x450/DFEEE8/1C6E4F?text=Pioneerterms+Team&font=montserrat" alt="Pioneerterms recruitment experts">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our recruiting edge</h2>
+            <p class="section-sub">Pioneerterms delivers end-to-end human capital solutions tailored to modern enterprises and job seekers.</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>Executive Search</h3>
+                    <p>Headhunting C-level & leadership talent with global network and rigorous assessment.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h3>Tech Recruitment</h3>
+                    <p>Software engineers, data scientists, DevOps — we speak your technical language.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-chalkboard-user"></i></div>
+                    <h3>Career Coaching</h3>
+                    <p>Resume optimization, interview prep & personal branding to land your dream role.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-building"></i></div>
+                    <h3>RPO Solutions</h3>
+                    <p>Recruitment process outsourcing for scaling teams and high-volume hiring.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Jobs Section (Pioneerterms opportunities) -->
+    <section id="jobs" class="jobs-preview">
+        <div class="container">
+            <h2 class="section-title">Featured opportunities</h2>
+            <p class="section-sub">Exclusive roles from Pioneerterms partner network — join industry leaders.</p>
+            <div class="job-list" id="job-list-container">
+                <!-- dynamic jobs injected via JS -->
+            </div>
+            <div style="text-align: center; margin-top: 2.5rem;">
+                <a href="#contact" class="btn-outline" style="border-radius:40px;"><i class="fas fa-briefcase"></i> Submit your CV to Pioneerterms</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section: Pioneerterms achievements -->
+    <section class="stats">
+        <div class="container stats-grid">
+            <div><div class="stat-number">1,500+</div><div class="stat-label">Successful Placements</div></div>
+            <div><div class="stat-number">96%</div><div class="stat-label">Client Satisfaction</div></div>
+            <div><div class="stat-number">36h</div><div class="stat-label">Avg. shortlist time</div></div>
+            <div><div class="stat-number">420+</div><div class="stat-label">Partner companies</div></div>
+        </div>
+    </section>
+
+    <!-- Contact & Get in Touch -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Let Pioneerterms shape your future</h2>
+            <p class="section-sub">Whether you’re hiring elite talent or seeking your next career move, our experts are ready.</p>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3 style="margin-bottom: 1.5rem;">Pioneerterms HQ</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 3000 El Camino Real, Suite 920, Palo Alto, CA 94306</p>
+                    <p><i class="fas fa-phone-alt"></i> +1 (650) 555-7890</p>
+                    <p><i class="fas fa-envelope"></i> connect@pioneerterms.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 8:30 AM - 6:30 PM (PT)</p>
+                    <div style="margin-top: 1.8rem;">
+                        <i class="fab fa-linkedin" style="font-size: 1.8rem; margin-right: 0.8rem; color:#1C6E4F;"></i>
+                        <i class="fab fa-twitter" style="font-size: 1.8rem; margin-right: 0.8rem; color:#1C6E4F;"></i>
+                        <i class="fab fa-instagram" style="font-size: 1.8rem; color:#1C6E4F;"></i>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="recruiterForm">
+                        <div class="form-group">
+                            <input type="text" id="fullname" placeholder="Full name *" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="Email address *" required>
+                        </div>
+                        <div class="form-group">
+                            <select id="inquiryType">
+                                <option value="candidate">I’m looking for a job</option>
+                                <option value="employer">I’m hiring talent</option>
+                                <option value="other">Other inquiry</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="3" id="message" placeholder="Tell us about your background or hiring needs..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send message <i class="fas fa-paper-plane"></i></button>
+                        <div id="formFeedback" class="form-message"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-logo">
+                <h3>Pioneerterms</h3>
+                <p style="margin-top: 8px;">Redefining recruitment with foresight & integrity.</p>
+            </div>
+            <div class="footer-links">
+                <div>
+                    <h4>Navigate</h4>
+                    <a href="#home">Home</a><br>
+                    <a href="#services">Services</a><br>
+                    <a href="#jobs">Jobs</a>
+                </div>
+                <div>
+                    <h4>Legal</h4>
+                    <a href="#">Privacy Policy</a><br>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Pioneerterms — Strategic Talent Recruitment. All rights reserved. Your success is our blueprint.
+        </div>
+    </div>
+</footer>
+
+<!-- JavaScript: dynamic job listings and form handling for Pioneerterms -->
+<script>
+    // Detailed job listings reflecting Pioneerterms network
+    const jobsData = [
+        { title: "Senior Backend Engineer (Go/Python)", location: "Remote (Global)", type: "Full-time", salary: "$155k - $195k" },
+        { title: "Director of Product Strategy", location: "Palo Alto, CA", type: "Hybrid", salary: "$185k - $225k + equity" },
+        { title: "Cloud Infrastructure Lead (AWS)", location: "Austin, TX", type: "Remote", salary: "$160k - $200k" },
+        { title: "Lead AI/ML Researcher", location: "San Francisco, CA", type: "On-site", salary: "$180k - $240k" },
+        { title: "Talent Acquisition Partner", location: "Chicago, IL", type: "Hybrid", salary: "$85k - $110k" },
+        { title: "Senior UX/UI Designer", location: "New York, NY", type: "Flex", salary: "$130k - $165k" }
+    ];
+
+    function loadJobListings() {
+        const container = document.getElementById('job-list-container');
+        if(!container) return;
+        container.innerHTML = '';
+        jobsData.forEach(job => {
+            const jobDiv = document.createElement('div');
+            jobDiv.className = 'job-item';
+            jobDiv.innerHTML = `
+                <div class="job-info">
+                    <h4>${job.title}</h4>
+                    <p><i class="fas fa-map-pin"></i> ${job.location} &nbsp;|&nbsp; <i class="fas fa-briefcase"></i> ${job.type} &nbsp;|&nbsp; <i class="fas fa-dollar-sign"></i> ${job.salary}</p>
+                </div>
+                <div class="job-action">
+                    <a href="#contact" class="apply-btn">Apply via Pioneerterms <i class="fas-arrow-right"></i></a>
+                </div>
+            `;
+            container.appendChild(jobDiv);
+        });
+        // Add smooth scroll for apply buttons
+        const applyBtns = document.querySelectorAll('.apply-btn');
+        applyBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                const selectElem = document.getElementById('inquiryType');
+                if(selectElem) selectElem.value = 'candidate';
+                const msgField = document.getElementById('message');
+                if(msgField) msgField.focus();
+            });
+        });
+    }
+
+    // Contact form handler with branded feedback
+    const contactForm = document.getElementById('recruiterForm');
+    const feedbackDiv = document.getElementById('formFeedback');
+    
+    if(contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('fullname').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const inquiry = document.getElementById('inquiryType').value;
+            const msg = document.getElementById('message').value.trim();
+            
+            if(!name || !email) {
+                feedbackDiv.innerHTML = '<span style="color:#c2410c;">❌ Please provide your full name and email address.</span>';
+                return;
+            }
+            if(!email.includes('@') || !email.includes('.')) {
+                feedbackDiv.innerHTML = '<span style="color:#c2410c;">❌ Please enter a valid email address.</span>';
+                return;
+            }
+            // Success simulation — fully functional for GitHub Pages
+            feedbackDiv.innerHTML = `<span style="color:#1C6E4F; background:#E6F4EF; padding:8px 16px; border-radius:50px; display:inline-block;">✅ Thanks ${name}! A Pioneerterms recruiter will reach out within 24 hours.</span>`;
+            contactForm.reset();
+            setTimeout(() => {
+                feedbackDiv.innerHTML = '';
+            }, 5000);
+            console.log(`Pioneerterms lead: ${name}, ${email}, type: ${inquiry}, message: ${msg}`);
+        });
+    }
+
+    // Active link highlight on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    function updateActiveLink() {
+        let current = '';
+        const scrollPos = window.scrollY + 120;
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if(scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+            }
+        });
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href').substring(1);
+            if(href === current && link.getAttribute('href') !== '#contact') {
+                link.classList.add('active');
+            } else if(current === 'contact' && link.getAttribute('href') === '#contact') {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', updateActiveLink);
+    window.addEventListener('load', () => {
+        loadJobListings();
+        updateActiveLink();
+        // Fine tune image placeholder alt text
+        const heroImg = document.querySelector('.hero-image img');
+        if(heroImg && heroImg.src.includes('placehold.co')) {
+            heroImg.alt = "Pioneerterms recruitment specialist team meeting";
+        }
+    });
+</script>
+</body>
+</html>
